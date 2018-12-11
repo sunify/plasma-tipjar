@@ -2,6 +2,7 @@ import * as React from 'react';
 import { observable, decorate, computed } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import ItemsStore from './itemsStore';
+import TokenAmount from './tokenAmount';
 
 type TipJarProps = {
   address: string;
@@ -43,13 +44,13 @@ class TipJar extends React.Component<TipJarProps, any> {
     return (
       <form className="jar" tabIndex={0}>
         <div className="jar-amount">
-          <button type="button" onClick={() => this.addAmount(-1)}>
+          <button type="button" onClick={() => this.addAmount(-0.1)}>
             <span>−</span>
           </button>
 
           <div>{this.amount}</div>
 
-          <button type="button" onClick={() => this.addAmount(1)}>
+          <button type="button" onClick={() => this.addAmount(+0.1)}>
             <span>+</span>
           </button>
         </div>
@@ -64,7 +65,7 @@ class TipJar extends React.Component<TipJarProps, any> {
           {this.sending ? '...' : 'Put in the jar'}
         </button>
         <div className="jar-body">
-          <div className="jar-total">{this.item.balance} LPD</div>
+          <div className="jar-total"><TokenAmount amount={this.item.balance} /> LEAP</div>
           <h3>{this.item.name}</h3>
           <p>{this.item.roles}</p>
         </div>
