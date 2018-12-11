@@ -3,10 +3,12 @@ import { observable, decorate, computed } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import ItemsStore from './itemsStore';
 import TokenAmount from './tokenAmount';
+import Account from './account';
 
 type TipJarProps = {
   address: string;
   items?: ItemsStore;
+  account?: Account;
 };
 
 class TipJar extends React.Component<TipJarProps, any> {
@@ -23,7 +25,13 @@ class TipJar extends React.Component<TipJarProps, any> {
   public sending = false;
 
   public addAmount(add) {
+    const { account } = this.props;
     this.amount = Math.max(0, this.amount + add);
+
+    if (account.balance && typeof account.balance.value === 'number') {
+      const cents = this.amount * 10 ** 18;
+      this.amount = Math.round(Math.min(account.balance.value, cents) / 10 ** 18 * 100) / 100;
+    }
   }
 
   public handleSubmitClick(e: React.MouseEvent<any>) {
@@ -65,7 +73,7 @@ class TipJar extends React.Component<TipJarProps, any> {
           {this.sending ? '...' : 'Put in the jar'}
         </button>
         <div className="jar-body">
-          <div className="jar-total"><TokenAmount amount={this.item.balance} /> LEAP</div>
+          <div className="jar-total"><TokenAmount amount={this.item.balance.value} /></div>
           <h3>{this.item.name}</h3>
           <p>{this.item.roles}</p>
         </div>
@@ -80,4 +88,4 @@ decorate(TipJar, {
   item: computed,
 });
 
-export default inject('items')(observer(TipJar));
+export default inject('items', 'account')(observer(TipJar));

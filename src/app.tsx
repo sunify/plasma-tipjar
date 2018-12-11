@@ -3,15 +3,18 @@ import TipJar from './tipJar';
 import { inject, observer } from 'mobx-react';
 import ItemsStore from './itemsStore';
 import Web3Store from './web3';
+import Account from './account';
+import TokenAmount from './tokenAmount';
 
 type AppProps = {
   items?: ItemsStore;
   web3?: Web3Store;
+  account?: Account;
 }
 
 class App extends React.Component<AppProps, any> {
   render() {
-    const { items, web3 } = this.props;
+    const { items, web3, account } = this.props;
 
     if (!items) {
       return null;
@@ -19,6 +22,9 @@ class App extends React.Component<AppProps, any> {
 
     return (
       <div>
+        {account.balance &&
+          <>MetaMask Balance: <TokenAmount amount={account.balance.value} /></>}
+
         {web3.injectedReady && web3.injectedAvailable && !web3.injected &&
           <button onClick={() => web3.enable()}>Connect 🦊</button>}
         <div className="jars">
@@ -34,4 +40,4 @@ class App extends React.Component<AppProps, any> {
   }
 }
 
-export default inject('items', 'web3')(observer(App));
+export default inject('items', 'web3', 'account')(observer(App));

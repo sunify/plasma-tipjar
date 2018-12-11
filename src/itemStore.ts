@@ -1,26 +1,19 @@
 import { decorate, observable, autorun } from 'mobx';
 import Web3Store from './web3';
-
-const delay = (ms, ...args) => new Promise((resolve) => setTimeout(resolve, ms, ...args));
+import Balance from './balance';
+import LatestBlock from './latestBlock';
 
 export default class ItemStore {
-  public balance: number = 0;
+  public balance: Balance;
 
   constructor(
     public address: string,
     public name: string,
     public roles: string,
     public web3: Web3Store,
+    public latestBlock: LatestBlock,
   ) {
-    this.loadBalance = this.loadBalance.bind(this);
-    setInterval(this.loadBalance, 3000);
-    autorun(this.loadBalance);
-  }
-
-  public loadBalance() {
-    this.web3.local.eth.getBalance(this.address).then(balance => {
-      this.balance = Number(balance);
-    });
+    this.balance = new Balance(this.address, this.web3, this.latestBlock);
   }
 
   public tip(amount: number) {
