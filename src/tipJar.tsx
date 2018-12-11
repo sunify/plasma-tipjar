@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import ItemsStore from './itemsStore';
 import TokenAmount from './tokenAmount';
 import Account from './account';
+import Balance from './balance';
 
 type TipJarProps = {
   address: string;
@@ -26,11 +27,13 @@ class TipJar extends React.Component<TipJarProps, any> {
 
   public addAmount(add) {
     const { account } = this.props;
+    const cents = Balance.toCents((this.amount + add));
     this.amount = Math.max(0, this.amount + add);
 
     if (account.balance && typeof account.balance.value === 'number') {
-      const cents = this.amount * 10 ** 18;
-      this.amount = Math.round(Math.min(account.balance.value, cents) / 10 ** 18 * 100) / 100;
+      this.amount = Balance.toTokens(Math.min(Math.max(account.balance.value, 0), cents));
+    } else {
+      this.amount = Balance.toTokens(Math.max(account.balance.value, 0));
     }
   }
 

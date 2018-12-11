@@ -5,6 +5,15 @@ import LatestBlock from "./latestBlock";
 class Balance {
   public value: number;
 
+  static toCents(tokens: number | string) {
+    return Number(tokens) * 10 ** 18;
+  }
+
+  static toTokens(cents: number | string, precision = 2) {
+    const precDec = 10 ** precision;
+    return Math.round(Number(cents) / 10 ** 18 * precDec) / precDec;
+  }
+
   constructor(
     public address: string,
     public web3: Web3Store,
