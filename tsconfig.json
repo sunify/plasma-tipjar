@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "jsx": "react"
+    "jsx": "react",
+    "target": "es2018",
+    "module": "commonjs"
   }
 }
