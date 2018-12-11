@@ -1,0 +1,144 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFF;
+}
+
+.jar {
+  font-family: 'Chivo';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(25% - 30px);
+  margin: 40px 15px 0;
+  outline: none;
+}
+
+.jar-cover {
+  font-size: 20px;
+  font-weight: bold;
+  border: 3px solid rgba(43, 253, 168, 0.4);
+  border-radius: 7px;
+  width: 90%;
+  height: 40px;
+  margin-bottom: 4px;
+  margin-top: 10px;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  color: transparent;
+}
+
+.jar-cover:hover,
+.jar-cover:focus {
+  border-color: rgba(43, 253, 168, 1);
+}
+
+.jar-body {
+  border: 3px solid rgba(43, 253, 168, 0.4);
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  width: 100%;
+}
+
+.jar-total {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.jar-body h3 {
+  font-size: 18px;
+  font-weight: normal;
+  margin-top: 10px;
+}
+
+.jar-body p {
+  font-size: 14px;
+}
+
+.jar:hover .jar-cover,
+.jar:focus .jar-cover,
+.jar:focus-within .jar-cover {
+  /* border-color: rgba(43, 253, 168, 1); */
+  color: #000;
+}
+
+.jar-amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.jar:hover .jar-amount,
+.jar:focus .jar-amount,
+.jar:focus-within .jar-amount {
+  visibility: visible;
+}
+
+.jar-amount button {
+  background-color: transparent;
+  font-weight: lighter;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #ccc;
+  font-size: 24px;
+  line-height: 0;
+  border-radius: 3px;
+  outline: none;
+}
+
+.jar-amount button:hover,
+.jar-amount button:focus {
+  outline: 2px solid rgba(43, 253, 168, 0.4);
+}
+
+.jar-amount button span {
+  position: relative;
+  top: -2px;
+}
+
+.jar-amount div {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.jars {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding: 0 20px 50px;
+  margin: 0 auto;
+}
+
+.jars .jar {
+}
+
+@media screen and (max-width: 1000px) {
+  .jar {
+    width: calc(33.3336% - 30px);
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .jar {
+    width: calc(50% - 30px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .jar {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
