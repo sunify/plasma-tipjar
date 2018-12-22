@@ -94,6 +94,7 @@ body {
   line-height: 0;
   border-radius: 3px;
   outline: none;
+  -webkit-user-select: none;
 }
 
 .jar-amount button:hover,

@@ -12,7 +12,7 @@ class LatestBlock {
   constructor(public web3: Web3Store) {
     this.loadBlockNumber = this.loadBlockNumber.bind(this);
     this.updateBlockNumber = this.updateBlockNumber.bind(this);
-    setInterval(this.loadBlockNumber, 2000);
+    setInterval(this.loadBlockNumber, 20000);
   }
 
   public updateBlockNumber(blockNumber: number) {

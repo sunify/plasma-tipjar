@@ -6,12 +6,12 @@ class Balance {
   public value: number;
 
   static toCents(tokens: number | string) {
-    return Number(tokens) * 10 ** 18;
+    return Number(tokens) * 10 ** 9;
   }
 
   static toTokens(cents: number | string, precision = 2) {
     const precDec = 10 ** precision;
-    return Math.round(Number(cents) / 10 ** 18 * precDec) / precDec;
+    return Math.round(Number(cents) / 10 ** 9 * precDec) / precDec;
   }
 
   constructor(

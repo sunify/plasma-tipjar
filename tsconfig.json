@@ -3,6 +3,7 @@
     "experimentalDecorators": true,
     "jsx": "react",
     "target": "es2018",
-    "module": "commonjs"
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true
   }
 }

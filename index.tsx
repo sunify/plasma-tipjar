@@ -10,8 +10,8 @@ import LatestBlock from './src/latestBlock';
 
 const web3 = new Web3Store();
 const latestBlock = new LatestBlock(web3);
-const items = new ItemsStore(web3, latestBlock);
 const account = new Account(web3, latestBlock);
+const items = new ItemsStore(web3, latestBlock, account);
 
 render(
   <Provider

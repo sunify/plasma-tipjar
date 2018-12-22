@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import Web3Type from 'web3';
+import { ExtendedWeb3, helpers } from 'leap-core';
 import Web3 from './web3_ts_workaround';
 
 export default class Web3Store {
@@ -7,7 +8,7 @@ export default class Web3Store {
   public injected: Web3Type | null = null;
 
   @observable.ref
-  public local: Web3Type;
+  public local: ExtendedWeb3;
 
   @observable
   public injectedAvailable = false;
@@ -19,9 +20,9 @@ export default class Web3Store {
   public injectedReady = false;
 
   constructor() {
-    this.local = new Web3(
-      new Web3.providers.HttpProvider('https://rinkeby.infura.io')
-    );
+    this.local = helpers.extendWeb3(new Web3(
+      new Web3.providers.HttpProvider('http://34.250.91.182:8645')
+    ));
 
     const { ethereum, web3 } = window as any;
     const metamask = ethereum && ethereum._metamask; // eslint-disable-line no-underscore-dangle

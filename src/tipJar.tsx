@@ -28,12 +28,11 @@ class TipJar extends React.Component<TipJarProps, any> {
   public addAmount(add) {
     const { account } = this.props;
     const cents = Balance.toCents((this.amount + add));
-    this.amount = Math.max(0, this.amount + add);
 
     if (account.balance && typeof account.balance.value === 'number') {
-      this.amount = Balance.toTokens(Math.min(Math.max(account.balance.value, 0), cents));
+      this.amount = Balance.toTokens(Math.min(Math.max(cents, 0), account.balance.value));
     } else {
-      this.amount = Balance.toTokens(Math.max(account.balance.value, 0));
+      this.amount = Balance.toTokens(Math.max(cents, 0));
     }
   }
 
@@ -43,6 +42,8 @@ class TipJar extends React.Component<TipJarProps, any> {
     this.item.tip(this.amount).then(() => {
       this.amount = 0;
       button.blur();
+      this.sending = false;
+    }).catch(() => {
       this.sending = false;
     });
   }
