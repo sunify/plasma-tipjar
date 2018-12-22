@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Alex Lunyov <isuntc@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "./node_modules/.bin/parcel index.html --open"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "parcel-bundler": "^1.10.3",

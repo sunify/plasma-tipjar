@@ -23,7 +23,7 @@ export default class ItemsStore {
     new ItemStore(
       '0x8ab21c65041778dfc7ec7995f9cdef3d5221a5ad',
       'Alex',
-      'Memesier',
+      'Random guy',
       this.web3,
       this.latestBlock,
       this.account,
@@ -31,7 +31,7 @@ export default class ItemsStore {
     new ItemStore(
       '0xaf0939af286a35dbfab7ded7c777a5f6e8be26a8',
       'Kosta',
-      'Docs Maintainer',
+      'Dev Lead Link',
       this.web3,
       this.latestBlock,
       this.account,

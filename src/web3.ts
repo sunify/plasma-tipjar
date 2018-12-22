@@ -21,7 +21,7 @@ export default class Web3Store {
 
   constructor() {
     this.local = helpers.extendWeb3(new Web3(
-      new Web3.providers.HttpProvider('http://34.250.91.182:8645')
+      new Web3.providers.HttpProvider('http://node1.testnet.leapdao.org:8645')
     ));
 
     const { ethereum, web3 } = window as any;
